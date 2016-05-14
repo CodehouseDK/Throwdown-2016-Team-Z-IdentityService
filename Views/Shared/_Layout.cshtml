@@ -1,0 +1,556 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Team Z</title>
+    <style>
+        @@import url(http://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,700);
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-80/tiny_grid.png);
+  font-family: 'Merriweather Sans', sans-serif;
+  color: ghostwhite;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.Dashboard {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Widget {
+  margin: 10px;
+  box-shadow: 1px 1px 5px #333;
+  text-align: center;
+}
+
+.Widget-header {
+  padding: 10px 20px;
+}
+
+.Widget-headline {
+  margin: 0;
+}
+
+.NotesWidget {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 200px;
+  background: white;
+  font-size: 1.2em;
+  color: #717A8D;
+}
+
+.NotesWidget .Widget-header {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.NotesWidget .Widget-controls {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  width: 100%;
+}
+
+.NotesWidget .Widget-body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100px;
+  padding: 0 0 10px;
+  background: ghostwhite;
+}
+
+.NotesWidget img {
+  height: 40px;
+}
+
+/*
+ * Events Widget
+ */
+.EventsWidget {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #239ED9;
+}
+
+.EventsWidget .Widget-header {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.EventsWidget .Widget-body {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  padding: 0 20px 10px;
+  background: #2180AC;
+}
+
+.EventsWidget img {
+  height: 30px;
+}
+
+.EventsWidget .Widget-controls {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.EventsWidget-count {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: white;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  color: #239ED9;
+}
+
+/*
+ * Color Forecast Widget
+ */
+.ColorForecastWidget {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0;
+  background: ghostwhite;
+  color: #717A8D;
+}
+
+.ColorForecastWidget .Widget-header {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+}
+
+.ColorForecastWidget .Widget-body {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  margin: 0;
+  padding: 0;
+}
+
+.ColorForecastWidget li {
+  padding: 1em 0;
+  list-style: none;
+}
+
+/*
+ * Commute Widget
+ */
+.CommuteWidget {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background: #E67053;
+}
+
+.CommuteWidget-graphic {
+  width: 120px;
+}
+
+.CommuteWidget .Widget-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px 20px 0;
+}
+
+.CommuteWidget .Widget-body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px 20px;
+  background: #e98369;
+}
+
+.CommuteWidget .Widget-subHeadline {
+  margin: 1em 0 0;
+  font-weight: normal;
+}
+
+.CommuteWidget .Widget-data {
+  margin: .5em 0;
+}
+
+/*
+ * Weather Widget
+ */
+.WeatherWidget {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 300px;
+  background: #5CC8E5;
+}
+
+.WeatherWidget .Widget-header {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.WeatherWidget .Widget-body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.WeatherWidget-primaryIcon {
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  height: 120px;
+  width: 120px;
+  z-index: 0;
+  opacity: .4;
+}
+
+.WeatherWidget .Widget-headline {
+  font-size: 3em;
+  z-index: 1;
+}
+
+.WeatherWidget .Widget-body {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: #39bcdf;
+  padding: 20px;
+  font-weight: 300;
+}
+
+/*
+ * Calendar Widget
+ */
+.CalendarWidget {
+  background: #2699D0;
+  overflow-x: auto;
+}
+
+.CalendarWidget .Widget-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.CalendarWidget img {
+  height: 30px;
+}
+
+.CalendarWidget .Widget-headline {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.CalendarWidget .Widget-body {
+  background: #2180AC;
+}
+
+.CalendarWidget-dayHeaders td {
+  color: #A1E0F5;
+}
+
+.CalendarWidget td {
+  padding: 6px 8px;
+}
+
+/*
+ * Message Widget
+ */
+.MessageWidget {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #ECEDF0;
+  color: #717A8D;
+}
+
+.MessageWidget .Widget-header {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  padding: 10px 20px;
+}
+
+.MessageWidget-graphic {
+  width: 60px;
+}
+
+.MessageWidget .Widget-subHeadline {
+  font-weight: 300;
+}
+
+.MessageWidget .Widget-body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  padding: 20px;
+  background: #E67053;
+}
+
+.MessageWidget .Widget-body img {
+  height: 30px;
+}
+
+.Color-1 {
+  background: #D4F4E8;
+}
+
+.Color-2 {
+  background: #FF95A2;
+}
+
+.Color-3 {
+  background: #ED8161;
+  color: white;
+}
+
+.Color-4 {
+  background: #68A691;
+  color: white;
+}
+
+
+    </style>
+</head>
+<body>
+<div class="Dashboard">
+
+ 
+</div>
+
+        @RenderBody()
+<script src="/scripts/bundle.js"></script>
+<script>
+    window.identityService.init(".Dashboard", "localhost:5004");
+</script>
+</body>
+</html>

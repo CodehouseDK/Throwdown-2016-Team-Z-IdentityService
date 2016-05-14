@@ -1,0 +1,39 @@
+﻿
+<div id="faces-container">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.css">
+    {{#each this}}
+   <div class="profile-card Widget">
+       <table>
+           <tr>
+               <td rowspan="2">
+                    <div class="avatar-container p-{{FaceAttributes.Smile}}">
+                        <img src="{{Identity.Url}}" alt="" class="avatar" />
+                    </div>
+               </td>
+               <td colspan="3"><div class="title big">Hi {{Identity.UserName}}</div></td>
+               
+           </tr>
+           <tr>
+               <td>
+                   <div class="title">Beard</div>
+
+                    <canvas class="gauge" width="110" height="110" id="{{Identity.UserName}}-beard"></canvas>
+               </td>
+               <td>
+                   <div class="title">Moustache</div>
+                   <canvas class="gauge" width="110" height="110" id="{{Identity.UserName}}-moustache"></canvas>
+               </td>
+               <td>
+                   <div class="title">Sideburns</div>
+                   <canvas class="gauge" width="110" height="110" id="{{Identity.UserName}}-burns"></canvas>
+               </td>
+               <td>
+                   <div class="title">Age</div>
+                   <canvas class="gauge" width="110" height="110" id="{{Identity.UserName}}-age"></canvas>
+               </td>
+              
+           </tr>
+       </table>
+   </div>    
+    {{/each}}
+</div>
